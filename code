@@ -1,0 +1,134 @@
+!DOCT<YPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Student Grade Calculator</h1>
+    <form id="gradeForm">
+        <!-- Subject Grades Input -->
+        <label for="subject1">Subject 1 Grade (Out of 100):</label>
+        <input type="number" id="subject1" name="subject1" min="0" max="100" required>
+
+        <label for="subject2">Subject 2 Grade (Out of 100):</label>
+        <input type="number" id="subject2" name="subject2" min="0" max="100" required>
+
+        <label for="subject3">Subject 3 Grade (Out of 100):</label>
+        <input type="number" id="subject3" name="subject3" min="0" max="100" required>
+
+        <label for="subject4">Subject 4 Grade (Out of 100):</label>
+        <input type="number" id="subject4" name="subject4" min="0" max="100" required>
+
+        <label for="subject5">Subject 5 Grade (Out of 100):</label>
+        <input type="number" id="subject5" name="subject5" min="0" max="100" required>
+
+        <!-- Submit Button -->
+        <button type="button" onclick="calculateGrade()">Calculate Grade</button>
+    </form>
+
+    <!-- Result Section -->
+    <div class="result" id="result">
+        <!-- Result will appear here -->
+    </div>
+</div>
+
+<script>
+    function calculateGrade() {
+        // Get the input values for each subject
+        var subject1 = parseFloat(document.getElementById('subject1').value);
+        var subject2 = parseFloat(document.getElementById('subject2').value);
+        var subject3 = parseFloat(document.getElementById('subject3').value);
+        var subject4 = parseFloat(document.getElementById('subject4').value);
+        var subject5 = parseFloat(document.getElementById('subject5').value);
+
+        // Check if all inputs are valid numbers
+        if (isNaN(subject1) || isNaN(subject2) || isNaN(subject3) || isNaN(subject4) || isNaN(subject5)) {
+            alert("Please enter valid numbers for all subjects.");
+            return;
+        }
+
+        // Calculate the average grade
+        var total = subject1 + subject2 + subject3 + subject4 + subject5;
+        var average = total / 5;
+
+        // Determine the grade based on the average
+        var finalGrade = "";
+        if (average >= 90) {
+            finalGrade = "A";
+        } else if (average >= 80) {
+            finalGrade = "B";
+        } else if (average >= 70) {
+            finalGrade = "C";
+        } else if (average >= 60) {
+            finalGrade = "D";
+        } else {
+            finalGrade = "F";
+        }
+
+        // Display the results
+        document.getElementById('result').innerHTML = `
+            <p>Total Marks: ${total}</p>
+            <p>Average: ${average.toFixed(2)}</p>
+            <p>Final Grade: ${finalGrade}</p>
+        `;
+    }
+</script>
+
+</body>
+</html>
